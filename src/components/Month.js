@@ -27,9 +27,12 @@ export default class Month extends React.Component {
 
   daysInMonth = (iMonth, iYear) => {
     let days = [];
-    let dim = 32 - new Date(iYear, iMonth, 32).getDate();
+    let day = {}
+    let dim = 32 - new Date(iYear, iMonth, 32).getDate()
+
     for (let i = 0; i < dim; i++) {
-      days.push(i);
+      day = {dd:i, mm:this.state.monthDisplay, yyyy:this.state.yearDisplay}
+      days.push(day);
     }
 
     this.setState({numDays:dim, rDays: days})
@@ -37,7 +40,7 @@ export default class Month extends React.Component {
   };
 
   nextMonth = () =>{
-    if(((this.state.monthDisplay)%months.length)==11){      
+    if(((this.state.monthDisplay)%months.length)===11){      
         let HNY = Number(this.state.yearDisplay)+1
         console.log(HNY, ((this.state.monthDisplay+1)%months.length))
         this.setState({monthDisplay:0, yearDisplay: HNY})
@@ -59,6 +62,9 @@ export default class Month extends React.Component {
     this.daysInMonth(this.state.monthDisplay-1, this.state.yearDisplay)
   }
 
+  gotoToday = () => {
+    this.setState({yearDisplay:this.props.year, monthDisplay:this.props.month})
+  }
 
   render() {
     let days = this.state.rDays;
@@ -68,17 +74,19 @@ export default class Month extends React.Component {
       <div className="month">
         <div className="monthTop">
           <button onClick={this.prevMonth} className="button fa fa-caret-left" aria-hidden="true"></button>
-          <p className="subtitle">{selectedMonthName}, {this.state.yearDisplay}</p>
+          <button onClick={this.gotoToday} className="button">
+            {selectedMonthName}, {this.state.yearDisplay}
+          </button>
           <button onClick={this.nextMonth} className="button fa fa-caret-right" aria-hidden="true"></button>        
         </div>
           <div className="monthdays">
             {days.map(item => (
               <Day  today={this.state.today}
+                    isToday={item.dd+1===this.state.today.dd && this.state.monthDisplay === this.state.today.mm}
                     month={this.state.monthDisplay}
                     year={this.state.yearDisplay}
-                    date={item + 1}  
-                    isday={false}
-                    key={item} />))}
+                    date={item.dd + 1}  
+                    key={item.dd} />))}
           </div>
       </div>
     );
