@@ -1,0 +1,35 @@
+.day {
+  width: 40px;
+  height: 40px;
+  border: 1px solid black;
+  font-size: 0.6em;
+  padding:2px;
+  margin: 1px;
+}
+
+.week {
+  display: flex;
+}
+
+.month {
+  padding: 5px;
+  background: salmon;
+}
+
+.monthdays {
+  display: flex;
+  flex-wrap: wrap;
+  color: whitesmoke;
+  font-weight:800;
+}
+
+.day:hover {
+  background: lime;
+  color:black;
+  border: 1px solid white;
+}
+
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
