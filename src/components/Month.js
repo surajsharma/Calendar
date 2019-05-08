@@ -10,17 +10,19 @@ export default class Month extends React.Component {
       firstDay: new Date(this.props.year, this.props.month).getDay(),
       numDays: 32 - new Date(this.props.year, this.props.month, 32).getDate(),
       rDays: [],
-      todaydd: null,
-      month:this.props.month,
-      year:this.props.year,
-      thismonth:true
+      today: {dd:null, mm:null, yyyy:null},
+      monthDisplay:this.props.month,
+      yearDisplay:this.props.year
     };
   }
 
   componentDidMount() {
-    let dd = String(this.props.today.getDate()).padStart(2, '');
-    this.daysInMonth(this.state.month, this.state.year);
-    this.setState({ todaydd: dd });
+    let dd = this.props.today.getDate();
+    let mm = this.props.today.getMonth();
+    let yyyy = this.props.today.getFullYear();
+
+    this.daysInMonth(this.state.monthDisplay, this.state.monthDisplay);
+    this.setState({ today: {dd:dd, mm:mm, yyyy: yyyy} });
   }
 
   daysInMonth = (iMonth, iYear) => {
@@ -35,30 +37,48 @@ export default class Month extends React.Component {
   };
 
   nextMonth = () =>{
-    this.setState({thismonth:false, month: (this.state.month+1)%months.length})
-    this.daysInMonth(this.state.month+1, this.state.year)
+    if(((this.state.monthDisplay)%months.length)==11){      
+        let HNY = Number(this.state.yearDisplay)+1
+        console.log(HNY, ((this.state.monthDisplay+1)%months.length))
+        this.setState({monthDisplay:0, yearDisplay: HNY})
+    }
+      else
+      {
+        this.setState({monthDisplay:(this.state.monthDisplay+1)%months.length})
+      }
+    this.daysInMonth(this.state.monthDisplay+1, this.state.yearDisplay)
   }
 
-
   prevMonth = () =>{
-    this.setState({thismonth:false, month: (this.state.month-1)%months.length})
-    this.daysInMonth(this.state.month-1, this.state.year)
+    if(((this.state.monthDisplay-1)%months.length) < 0){
+      this.setState({monthDisplay:months.length-1, yearDisplay: this.state.yearDisplay-1})
+    }
+      else{
+        this.setState({monthDisplay:(this.state.monthDisplay-1)%months.length})
+      }
+    this.daysInMonth(this.state.monthDisplay-1, this.state.yearDisplay)
   }
 
 
   render() {
     let days = this.state.rDays;
-    var selectedMonthName = months[this.state.month];
+    var selectedMonthName = months[this.state.monthDisplay];
 
     return (
       <div className="month">
         <div className="monthTop">
           <button onClick={this.prevMonth} className="button fa fa-caret-left" aria-hidden="true"></button>
-          <p className="subtitle">{selectedMonthName}, {this.props.year}</p>
+          <p className="subtitle">{selectedMonthName}, {this.state.yearDisplay}</p>
           <button onClick={this.nextMonth} className="button fa fa-caret-right" aria-hidden="true"></button>        
         </div>
           <div className="monthdays">
-            {days.map(item => (<Day thismonth={this.state.thismonth} date={item + 1} today={this.state.todaydd} key={item} />))}
+            {days.map(item => (
+              <Day  today={this.state.today}
+                    month={this.state.monthDisplay}
+                    year={this.state.yearDisplay}
+                    date={item + 1}  
+                    isday={false}
+                    key={item} />))}
           </div>
       </div>
     );
