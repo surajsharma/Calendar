@@ -13,13 +13,12 @@
 
 .month {
   padding: 5px;
-  background: salmon;
 }
 
 .monthdays {
   display: flex;
   flex-wrap: wrap;
-  color: whitesmoke;
+  color: grey;
   font-weight:800;
 }
 
@@ -32,4 +31,22 @@
 .App {
   font-family: sans-serif;
   text-align: center;
+}
+
+
+.today{
+  background: black;
+  color: white;
+}
+
+
+.center{
+  text-align: center;
+  border: 1px solid red;
+}
+
+
+.monthTop{
+  display: flex;
+  justify-content: space-evenly;
 }
