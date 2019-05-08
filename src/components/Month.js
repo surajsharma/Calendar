@@ -42,7 +42,6 @@ export default class Month extends React.Component {
   nextMonth = () =>{
     if(((this.state.monthDisplay)%months.length)===11){      
         let HNY = Number(this.state.yearDisplay)+1
-        console.log(HNY, ((this.state.monthDisplay+1)%months.length))
         this.setState({monthDisplay:0, yearDisplay: HNY})
     }
       else
@@ -74,7 +73,7 @@ export default class Month extends React.Component {
       <div className="month">
         <div className="monthTop">
           <button onClick={this.prevMonth} className="button fa fa-caret-left" aria-hidden="true"></button>
-          <button onClick={this.gotoToday} className="button">
+          <button onClick={this.gotoToday} className="button is-dark">
             {selectedMonthName}, {this.state.yearDisplay}
           </button>
           <button onClick={this.nextMonth} className="button fa fa-caret-right" aria-hidden="true"></button>        
@@ -82,7 +81,8 @@ export default class Month extends React.Component {
           <div className="monthdays">
             {days.map(item => (
               <Day  today={this.state.today}
-                    isToday={item.dd+1===this.state.today.dd && this.state.monthDisplay === this.state.today.mm}
+                    isToday={item.dd+1===this.state.today.dd && 
+                            this.state.monthDisplay === this.state.today.mm}
                     month={this.state.monthDisplay}
                     year={this.state.yearDisplay}
                     date={item.dd + 1}  

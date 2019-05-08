@@ -1,3 +1,7 @@
+//WEEK
+//YEARS
+//ZOOM
+
 import React from "react";
 import "./styles.css";
 import Month from "./components/Month"

@@ -14,13 +14,19 @@
 .month {
   padding: 5px;
   width: 330px;
+  margin: 10px;
+  background: #ffe;
 }
 
 .monthdays {
   display: flex;
   flex-wrap: wrap;
+  justify-content: flex-end;
   color: grey;
+  width: 92.5%;
   font-weight:800;
+  margin: 0 auto;
+  margin-top: 5px;
 }
 
 .day:hover {
@@ -49,5 +55,6 @@
 
 .monthTop{
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
+ 
 }
