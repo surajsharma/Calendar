@@ -1,3 +1,17 @@
+.day-name{
+  float:right;
+  margin-top: -5px;
+}
+.day-date{
+  width:50%;
+  font-weight:800;
+ }
+
+.sunday{
+  background: #fd9;
+  color: black;
+}
+
 .day {
   width: 40px;
   height: 40px;
@@ -22,9 +36,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
-  color: grey;
   width: 92.5%;
-  font-weight:800;
   margin: 0 auto;
   margin-top: 5px;
 }
@@ -57,4 +69,11 @@
   display: flex;
   justify-content: space-between;
  
+}
+
+
+.button{
+  background: transparent;
+  font-size: 1.2em;
+  border: 0;
 }

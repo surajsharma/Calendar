@@ -1,8 +1,6 @@
 import React from "react";
 import Day from "./Day"
 
-const months = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
-
 export default class Month extends React.Component {
   constructor(props) {
     super(props);
@@ -10,19 +8,29 @@ export default class Month extends React.Component {
       firstDay: new Date(this.props.year, this.props.month).getDay(),
       numDays: 32 - new Date(this.props.year, this.props.month, 32).getDate(),
       rDays: [],
-      today: {dd:null, mm:null, yyyy:null},
+      today: {dd:null, 
+	      mm:null, 
+	      yyyy:null,
+      	      name:null},
       monthDisplay:this.props.month,
       yearDisplay:this.props.year
-    };
+    }
+
+    this.months = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
   }
 
-  componentDidMount() {
-    let dd = this.props.today.getDate();
-    let mm = this.props.today.getMonth();
-    let yyyy = this.props.today.getFullYear();
+  getDayName = (dd,mm,yyyy,locale,longShort) => {
+	  return new Date(Date.UTC(yyyy, mm, dd+1))
+		  .toLocaleDateString(locale, { weekday: longShort })
+  }
 
+   componentDidMount() {
+    let dd = this.props.today.getDate()
+    let mm = this.props.today.getMonth()
+    let yyyy = this.props.today.getFullYear()
+    let name = this.getDayName(dd,mm,yyyy,"en-US", "short")
     this.daysInMonth(this.state.monthDisplay, this.state.monthDisplay);
-    this.setState({ today: {dd:dd, mm:mm, yyyy: yyyy} });
+    this.setState({ today: {dd:dd, mm:mm, yyyy: yyyy, name: name} });
   }
 
   daysInMonth = (iMonth, iYear) => {
@@ -40,23 +48,31 @@ export default class Month extends React.Component {
   };
 
   nextMonth = () =>{
-    if(((this.state.monthDisplay)%months.length)===11){      
+    if(((this.state.monthDisplay)%this.months.length)===11){      
         let HNY = Number(this.state.yearDisplay)+1
         this.setState({monthDisplay:0, yearDisplay: HNY})
     }
       else
       {
-        this.setState({monthDisplay:(this.state.monthDisplay+1)%months.length})
+        this.setState({ monthDisplay:(this.state.monthDisplay+1)%this.months.length })
       }
     this.daysInMonth(this.state.monthDisplay+1, this.state.yearDisplay)
   }
 
   prevMonth = () =>{
-    if(((this.state.monthDisplay-1)%months.length) < 0){
-      this.setState({monthDisplay:months.length-1, yearDisplay: this.state.yearDisplay-1})
+    if(((this.state.monthDisplay-1)%this.months.length) < 0){
+      this.setState({ monthDisplay:this.months.length-1, 
+                      yearDisplay: this.state.yearDisplay-1,
+	      	      today : { mm: this.months.length-1, 
+			        yyyy: this.state.yearDisplay-1 
+		      }
+      })
     }
       else{
-        this.setState({monthDisplay:(this.state.monthDisplay-1)%months.length})
+	      let newMonth = (this.state.monthDisplay-1)%this.months.length
+	      this.setState({ 	monthDisplay: newMonth,
+				today:{mm: newMonth}
+	})
       }
     this.daysInMonth(this.state.monthDisplay-1, this.state.yearDisplay)
   }
@@ -66,8 +82,9 @@ export default class Month extends React.Component {
   }
 
   render() {
-    let days = this.state.rDays;
-    var selectedMonthName = months[this.state.monthDisplay];
+    let days = this.state.rDays
+    let today = this.state.today
+    var selectedMonthName = this.months[this.state.monthDisplay]
 
     return (
       <div className="month">
@@ -80,13 +97,22 @@ export default class Month extends React.Component {
         </div>
           <div className="monthdays">
             {days.map(item => (
-              <Day  today={this.state.today}
-                    isToday={item.dd+1===this.state.today.dd && 
-                            this.state.monthDisplay === this.state.today.mm}
+              <Day  today={today}
+                    isToday={ item.dd+1===today.dd && 
+                              this.state.monthDisplay === today.mm &&
+                              this.state.yearDisplay === today.yyyy}
                     month={this.state.monthDisplay}
                     year={this.state.yearDisplay}
                     date={item.dd + 1}  
-                    key={item.dd} />))}
+                    key={item.dd} 
+		    dayName ={this.getDayName(	item.dd,
+			    			this.state.monthDisplay,
+			    			this.state.yearDisplay,
+			    			"en-US",
+			    			"short" )}
+			    			
+		    />
+	    ))}
           </div>
       </div>
     );

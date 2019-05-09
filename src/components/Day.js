@@ -3,8 +3,14 @@ import React from "react"
 export default class Day extends React.Component {
   render() {
     if(this.props.isToday)
-        return <div className="day today">{this.props.date}</div> 
+        return <button className="day today">
+		  <div className="day-date">{this.props.date}</div><br /> 
+		  <div className="day-name">{this.props.dayName}</div>
+	       </button> 
       else
-        return <div className="day">{this.props.date}</div>
+        return <button className={this.props.dayName==='Sun'? "sunday day":"day" }>
+		  <div className="day-date">{this.props.date}</div><br /> 
+		  <div className="day-name">{this.props.dayName}</div>
+	      </button>
   }
 }
