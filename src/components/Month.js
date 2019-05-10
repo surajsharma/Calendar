@@ -95,11 +95,11 @@ export default class Month extends React.Component {
           <button onClick={this.nextMonth} className="button fa fa-caret-right" aria-hidden="true"></button>        
         </div>
           <div className="monthdays">
-           <Week year={this.state.yearDisplay} month={this.state.monthDisplay} today={this.props.today} numWeek={1}/>
-           <Week year={this.state.yearDisplay} month={this.state.monthDisplay} today={this.props.today} numWeek={2}/>
-           <Week year={this.state.yearDisplay} month={this.state.monthDisplay} today={this.props.today} numWeek={3}/>
-           <Week year={this.state.yearDisplay} month={this.state.monthDisplay} today={this.props.today} numWeek={4}/>
-           <Week year={this.state.yearDisplay} month={this.state.monthDisplay} today={this.props.today} numWeek={5}/>
+          <Week year={this.state.yearDisplay} month={this.state.monthDisplay} today={this.props.today} numWeek={1}/>
+          <Week year={this.state.yearDisplay} month={this.state.monthDisplay} today={this.props.today} numWeek={2}/>
+          <Week year={this.state.yearDisplay} month={this.state.monthDisplay} today={this.props.today} numWeek={3}/>
+          <Week year={this.state.yearDisplay} month={this.state.monthDisplay} today={this.props.today} numWeek={4}/>
+          <Week year={this.state.yearDisplay} month={this.state.monthDisplay} today={this.props.today} numWeek={5}/>
          </div>
       </div>
     );
