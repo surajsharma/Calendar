@@ -6,12 +6,10 @@
   width:50%;
   font-weight:800;
  }
-
 .sunday{
   background: #fd9;
   color: black;
 }
-
 .day {
   width: 40px;
   height: 40px;
@@ -24,16 +22,36 @@
 .week {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-end;
+  justify-content: space-between;
+  margin: 1px;
+  width: 400px;
+}
+
+.week:hover {
+  background: rgba(255,190,155,0.5);
+}
+
+.week-btn{
+  background: transparent;
+  width: 20px;
+  height: 40px;
+  padding:2px;
+  margin: 3px;
+}
+
+.week-btn p{
+}
+
+.week-days{
 }
 
 .month {
   padding: 5px;
-  width: 330px;
+  width: 361px;
   margin: 10px;
+  border: 1px dotted grey;
   background: #ffe;
 }
-
 .monthdays {
   display: flex;
   flex-wrap: wrap;
@@ -42,38 +60,28 @@
   margin: 0 auto;
   margin-top: 5px;
 }
-
 .day:hover {
   background: lime;
   color:black;
   border: 1px solid white;
 }
-
 .App {
   font-family: sans-serif;
   text-align: center;
 }
-
-
 .today{
   background: black;
   color: white;
 }
-
-
 .center{
   text-align: center;
   border: 1px solid red;
 }
-
-
 .monthTop{
   display: flex;
   justify-content: space-between;
  
 }
-
-
 .button{
   background: transparent;
   font-size: 1.2em;
