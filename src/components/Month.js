@@ -1,9 +1,10 @@
-import React from "react";
-import Day from "./Day"
+import React from "react"
+import Week from "./Week"
 
 export default class Month extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
+
     this.state = {
       firstDay: new Date(this.props.year, this.props.month).getDay(),
       numDays: 32 - new Date(this.props.year, this.props.month, 32).getDate(),
@@ -82,8 +83,6 @@ export default class Month extends React.Component {
   }
 
   render() {
-    let days = this.state.rDays
-    let today = this.state.today
     var selectedMonthName = this.months[this.state.monthDisplay]
 
     return (
@@ -96,24 +95,12 @@ export default class Month extends React.Component {
           <button onClick={this.nextMonth} className="button fa fa-caret-right" aria-hidden="true"></button>        
         </div>
           <div className="monthdays">
-            {days.map(item => (
-              <Day  today={today}
-                    isToday={ item.dd+1===today.dd && 
-                              this.state.monthDisplay === today.mm &&
-                              this.state.yearDisplay === today.yyyy}
-                    month={this.state.monthDisplay}
-                    year={this.state.yearDisplay}
-                    date={item.dd + 1}  
-                    key={item.dd} 
-		    dayName ={this.getDayName(	item.dd,
-			    			this.state.monthDisplay,
-			    			this.state.yearDisplay,
-			    			"en-US",
-			    			"short" )}
-			    			
-		    />
-	    ))}
-          </div>
+           <Week year={this.state.yearDisplay} month={this.state.monthDisplay} today={this.props.today} numWeek={1}/>
+           <Week year={this.state.yearDisplay} month={this.state.monthDisplay} today={this.props.today} numWeek={2}/>
+           <Week year={this.state.yearDisplay} month={this.state.monthDisplay} today={this.props.today} numWeek={3}/>
+           <Week year={this.state.yearDisplay} month={this.state.monthDisplay} today={this.props.today} numWeek={4}/>
+           <Week year={this.state.yearDisplay} month={this.state.monthDisplay} today={this.props.today} numWeek={5}/>
+         </div>
       </div>
     );
   }

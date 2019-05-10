@@ -5,7 +5,6 @@
 import React from "react";
 import "./styles.css";
 import Month from "./components/Month"
-import Week from "./components/Week"
 
 export default class App extends React.Component {
   constructor(props) {
@@ -19,8 +18,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-        <Week year={this.state.cYear} month={this.state.cMonth} today={this.state.today}/>
-        <Month year={this.state.cYear} month={this.state.cMonth} today={this.state.today}/>
+       <Month year={this.state.cYear} month={this.state.cMonth} today={this.state.today}/>
       </div>
     );
   }
