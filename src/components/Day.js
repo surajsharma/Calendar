@@ -1,16 +1,31 @@
 import React from "react"
 
 export default class Day extends React.Component {
+  constructor(props){
+    super(props)
+    this.state={
+      toggled: false
+    }
+  }
 
-  handleDoubleClick
+  handleDoubleClick = (e) => {
+    this.setState({
+      toggled: !this.state.toggled
+    })
+  }
+
   render() {
     if(this.props.isToday)
-        return <button className="day today">
+        return <button  onDoubleClick={this.handleDoubleClick} 
+                        className={this.state.toggled ? "toggled day today" : "day today"}>
 		  <div className="day-date">{this.props.date}</div><br /> 
 		  <div className="day-name">{this.props.dayName}</div>
 	       </button> 
       else
-        return <button className={this.props.dayName==='Sun'? "sunday day":"day" }>
+        return <button  onDoubleClick={this.handleDoubleClick} 
+                        className={ this.state.toggled ? 
+                                    this.props.dayName === 'Sun'? "toggled sunday day" : "day toggled" :  this.props.dayName === 'Sun'? "sunday day" : "day"}
+                >
 		  <div className="day-date">{this.props.date}</div><br /> 
 		  <div className="day-name">{this.props.dayName}</div>
 	      </button>

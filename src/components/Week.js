@@ -1,7 +1,3 @@
-//TODO: FIX FEB 
-//TODO: handleDOUBLECLICK in day
-
-
 import React from "react"
 import Day from "./Day"
 
@@ -41,8 +37,6 @@ export default class Week extends React.Component{
     const baseDate = new Date(Date.UTC(year,month, date)) // just a Monday
     let weekDays = []
     let show = numDays-date > 7 ? 7 : this.props.month === 1 ? numDays-21 : numDays-28
-
-    console.log(show, month, this.state.leap)
 
     if(show === 8 && this.props.numWeek === 4){
       show = 7
