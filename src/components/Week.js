@@ -1,3 +1,7 @@
+//TODO: FIX FEB 
+//TODO: handleDOUBLECLICK in day
+
+
 import React from "react"
 import Day from "./Day"
 
@@ -8,7 +12,8 @@ export default class Week extends React.Component{
       firstDay: new Date(this.props.year, this.props.month).getDay(),
       today: {dd:null, mm:null, yyyy:null, name:null},
       monthDisplay:this.props.month,
-      yearDisplay:this.props.year
+      yearDisplay:this.props.year,
+      leap: this.props.month === 2 && this.props.year%4 === 0
     }
   }
 
@@ -20,21 +25,42 @@ export default class Week extends React.Component{
     this.setState({ today: {dd:dd, mm:mm, yyyy: yyyy, name: name}})
   }
 
+  componentWillReceiveProps(props){
+    const {month}= this.props
+    if(props.month !== month || props.month===1){
+      this.setState({
+        monthDisplay: props.month,
+        yearDisplay: props.year,
+        leap: props.month===1 && props.year%4===0
+      })      
+    }
+  }
+
   getWeekDays = (locale, year, month, date, longShort) => {
     const numDays = 32 - new Date(this.props.year, this.props.month, 32).getDate()
     const baseDate = new Date(Date.UTC(year,month, date)) // just a Monday
     let weekDays = []
     let show = numDays-date > 7 ? 7 : this.props.month === 1 ? numDays-21 : numDays-28
 
-    if (numDays-date === -1 || numDays - date === 0 ){
-            return weekDays
+    console.log(show, month, this.state.leap)
+
+    if(show === 8 && this.props.numWeek === 4){
+      show = 7
     }
 
-    for(let i = date; i < show+date; i++)
+    if(this.state.leap && this.props.numWeek === 5){
+      show = 1
+    }
+
+    for(let i = date; i < show + date; i++)
     {       
-        weekDays.push(baseDate.toLocaleDateString(locale, { weekday: longShort }));
-        baseDate.setDate(baseDate.getDate() + 1);       
-    
+      weekDays.push(baseDate.toLocaleDateString(locale, { weekday: longShort }));
+      baseDate.setDate(baseDate.getDate() + 1)
+
+      if (numDays-date < 0 ){
+        weekDays.pop()
+        return weekDays
+      }    
     }
     return weekDays
   }
@@ -44,23 +70,35 @@ export default class Week extends React.Component{
   }
 
   render(){
-	  let weekDays = this.getWeekDays('en-US',this.props.year,this.props.month, this.state.today.dd, "short")
-	  return (
-      <div className="week">
-      <button className='week-btn'><p>W {this.props.numWeek}</p></button>
-      <div className='week-days'>
-        {weekDays.map((item, index) => (<Day	today={this.state.today}
-  			  				isWeek={true}
-  							dayName={item}
-            		 			isToday={ this.state.today.dd + index === this.props.today.getDate()
-  								  && this.state.monthDisplay === this.props.month 
-  								  && this.state.yearDisplay === this.props.year }
-          				 	month={this.state.monthDisplay}
-          				 	year={this.state.yearDisplay}
-          		 		 	date={this.state.today.dd + index}  
-          		 		 	key={index}
-      		  				sunday={item  === 'Sun' ? true : false }/>))}
-        </div>
-     </div>)
+    
+    const numDays = 32 - new Date(this.state.yearDisplay, this.state.monthDisplay, 32).getDate()
+
+	  let weekDays = 
+    this.getWeekDays('en-US', this.state.yearDisplay, 
+                              this.state.monthDisplay, 
+                              this.state.today.dd, "short")
+
+    if(this.state.leap===false && numDays === 28 && this.props.numWeek===5){
+      return (<div></div>)     
+    }else {
+      return (
+        <div className="week">
+        <button className='week-btn'><p>W {this.props.numWeek}</p></button>
+        <div className='week-days'>
+          {weekDays.map((item, index) => (
+            <Day  today={this.state.today}
+                      isWeek={true}
+                      dayName={item}
+                      isToday={ this.state.today.dd + index === this.props.today.getDate()
+                      && this.state.monthDisplay === this.props.today.getMonth()
+                      && this.state.yearDisplay === this.props.today.getFullYear() }
+                      month={this.state.monthDisplay}
+                      year={this.state.yearDisplay}
+                      date={this.state.today.dd + index}  
+                      key={index}
+                      sunday={item  === 'Sun' ? true : false }/>))}
+          </div>
+       </div>)
+    }
   }
 }

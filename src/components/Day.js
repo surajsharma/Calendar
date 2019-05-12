@@ -1,6 +1,8 @@
 import React from "react"
 
 export default class Day extends React.Component {
+
+  handleDoubleClick
   render() {
     if(this.props.isToday)
         return <button className="day today">

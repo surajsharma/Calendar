@@ -10,14 +10,25 @@ export default class Month extends React.Component {
       numDays: 32 - new Date(this.props.year, this.props.month, 32).getDate(),
       rDays: [],
       today: {dd:null, 
-	      mm:null, 
-	      yyyy:null,
+      	      mm:null, 
+	            yyyy:null,
       	      name:null},
       monthDisplay:this.props.month,
-      yearDisplay:this.props.year
+      yearDisplay:this.props.year,
     }
 
-    this.months = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
+    this.months = [ "January", 
+                    "February", 
+                    "March", 
+                    "April", 
+                    "May", 
+                    "June",
+                    "July", 
+                    "August", 
+                    "September", 
+                    "October", 
+                    "November", 
+                    "December" ];
   }
 
   getDayName = (dd,mm,yyyy,locale,longShort) => {
@@ -64,8 +75,8 @@ export default class Month extends React.Component {
     if(((this.state.monthDisplay-1)%this.months.length) < 0){
       this.setState({ monthDisplay:this.months.length-1, 
                       yearDisplay: this.state.yearDisplay-1,
-	      	      today : { mm: this.months.length-1, 
-			        yyyy: this.state.yearDisplay-1 
+	      	            today : { mm: this.months.length-1, 
+			                yyyy: this.state.yearDisplay-1 
 		      }
       })
     }
@@ -78,21 +89,20 @@ export default class Month extends React.Component {
     this.daysInMonth(this.state.monthDisplay-1, this.state.yearDisplay)
   }
 
-  gotoToday = () => {
+  zoomOut = () => {
     this.setState({yearDisplay:this.props.year, monthDisplay:this.props.month})
   }
 
   render() {
     var selectedMonthName = this.months[this.state.monthDisplay]
-
     return (
       <div className="month">
         <div className="monthTop">
-          <button onClick={this.prevMonth} className="button fa fa-caret-left" aria-hidden="true"></button>
-          <button onClick={this.gotoToday} className="button is-dark">
+          <button onClick={this.prevMonth} className="button arrow fa fa-caret-left" aria-hidden="true"></button>
+          <button onClick={this.zoomOut} className="button is-dark is-outlined">
             {selectedMonthName}, {this.state.yearDisplay}
           </button>
-          <button onClick={this.nextMonth} className="button fa fa-caret-right" aria-hidden="true"></button>        
+          <button onClick={this.nextMonth} className="button arrow fa fa-caret-right" aria-hidden="true"></button>        
         </div>
           <div className="monthdays">
           <Week year={this.state.yearDisplay} month={this.state.monthDisplay} today={this.props.today} numWeek={1}/>
