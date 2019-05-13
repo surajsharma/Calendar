@@ -14,6 +14,7 @@
 }
 
 .day {
+  outline: none;
   width: 40px;
   height: 40px;
   border: 1px solid black;
@@ -23,28 +24,27 @@
 }
 
 .week {
+  outline: none;
   display: flex;
+  float: right;
   flex-wrap: wrap;
   justify-content: space-between;
   margin: 1px;
-  width: 100%
-
+  width: 100%;
 }
 
 .week:hover {
   background: rgba(90,210,90,0.5);
   border: 0;
+  outline: none;
 }
 
 .week-btn{
-  background: green;
-  color: white;
-  font-weight: 800;
-  border:0;
+  background: transparent;
   width: 20px;
-  height: 40px;
   padding:2px;
   margin: 3px;
+  outline: none;
 }
 
 .week-btn:hover{
@@ -56,13 +56,14 @@
 }
 
 .week-days{
+  background:  rgba(200,250,155,0.5);
 }
 
 .month {
   padding: 5px;
   width: 361px;
   margin: 10px;
-  background: rgba(190,250,155,0.5);
+  background: rgba(190,250,155,0.2);
 }
 
 .monthdays {
@@ -94,6 +95,7 @@
   text-align: center;
   border: 1px solid red;
 }
+
 .monthTop{
   display: flex;
   justify-content: space-between;
@@ -114,4 +116,12 @@
 
 .toggled{
   background: orange;
+}
+
+.content-wrapper{
+    display:block;
+}
+
+.pView{
+  width: 100%;
 }

@@ -1,15 +1,16 @@
 import React from "react"
 import Day from "./Day"
+import posed from 'react-pose';
 
 export default class Week extends React.Component{
    constructor(props) {
     super(props);
     this.state = {
-      firstDay: new Date(this.props.year, this.props.month).getDay(),
       today: {dd:null, mm:null, yyyy:null, name:null},
       monthDisplay:this.props.month,
       yearDisplay:this.props.year,
-      leap: this.props.month === 2 && this.props.year%4 === 0
+      leap: this.props.month === 2 && this.props.year%4 === 0,
+      open:false
     }
   }
 
@@ -63,36 +64,56 @@ export default class Week extends React.Component{
 	  return new Date(year, month, date).getDate()
   }
 
+  openWeekView = () =>{
+    this.setState({
+      open: !this.state.open
+    })
+
+    console.log(this.state.open)
+  }
+
   render(){
-    
+    const { open } = this.state;
     const numDays = 32 - new Date(this.state.yearDisplay, this.state.monthDisplay, 32).getDate()
 
-	  let weekDays = 
-    this.getWeekDays('en-US', this.state.yearDisplay, 
-                              this.state.monthDisplay, 
-                              this.state.today.dd, "short")
+	  let weekDays = this.getWeekDays('en-US',  this.state.yearDisplay, 
+                                              this.state.monthDisplay, 
+                                              this.state.today.dd, "short")
+
+    const Content = posed.div({closed: { display: 'none' },open: { display: 'block' }});
 
     if(this.state.leap===false && numDays === 28 && this.props.numWeek===5){
       return (<div></div>)     
-    }else {
+    } else {
       return (
-        <div className="week">
-        <button className='week-btn'><p>W {this.props.numWeek}</p></button>
-        <div className='week-days'>
-          {weekDays.map((item, index) => (
-            <Day  today={this.state.today}
-                      isWeek={true}
-                      dayName={item}
-                      isToday={ this.state.today.dd + index === this.props.today.getDate()
-                      && this.state.monthDisplay === this.props.today.getMonth()
-                      && this.state.yearDisplay === this.props.today.getFullYear() }
-                      month={this.state.monthDisplay}
-                      year={this.state.yearDisplay}
-                      date={this.state.today.dd + index}  
-                      key={index}
-                      sunday={item  === 'Sun' ? true : false }/>))}
-          </div>
-       </div>)
+        <div className="pView">
+          <div className="week">
+            <button className='week-btn' onClick={this.openWeekView}>
+              <p>{this.props.numWeek}</p>
+            </button>
+
+            <div className='week-days'>
+              {weekDays.map((item, index) => (
+                <Day  today={this.state.today}
+                          isWeek={true}
+                          dayName={item}
+                          isToday={ this.state.today.dd + index === this.props.today.getDate()
+                          && this.state.monthDisplay === this.props.today.getMonth()
+                          && this.state.yearDisplay === this.props.today.getFullYear() }
+                          month={this.state.monthDisplay}
+                          year={this.state.yearDisplay}
+                          date={this.state.today.dd + index}  
+                          key={index}
+                          sunday={item  === 'Sun' ? true : false }/>))}
+              </div>
+            </div>
+            <Content className="content" pose={open ? 'open' : 'closed'}>
+              <div className="content-wrapper">Content</div>
+            </Content>
+
+        </div>
+
+          )
     }
   }
 }
