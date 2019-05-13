@@ -1,6 +1,7 @@
 import React from "react"
 import Day from "./Day"
-import posed from 'react-pose';
+import posed from 'react-pose'
+import Planner from "./WeekPlanner"
 
 export default class Week extends React.Component{
    constructor(props) {
@@ -88,10 +89,6 @@ export default class Week extends React.Component{
       return (
         <div className="pView">
           <div className="week">
-            <button className='week-btn' onClick={this.openWeekView}>
-              <p>{this.props.numWeek}</p>
-            </button>
-
             <div className='week-days'>
               {weekDays.map((item, index) => (
                 <Day  today={this.state.today}
@@ -106,11 +103,15 @@ export default class Week extends React.Component{
                           key={index}
                           sunday={item  === 'Sun' ? true : false }/>))}
               </div>
+            <button className='week-btn' onClick={this.openWeekView}>
+              <p>{this.props.numWeek}</p>
+            </button>              
             </div>
             <Content className="content" pose={open ? 'open' : 'closed'}>
-              <div className="content-wrapper">Content</div>
+              <div className="content-wrapper">
+                <Planner days={weekDays}/>
+              </div>
             </Content>
-
         </div>
 
           )

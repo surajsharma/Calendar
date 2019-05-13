@@ -29,7 +29,7 @@
   float: right;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin: 1px;
+  margin: 2px;
   width: 100%;
 }
 
@@ -120,6 +120,13 @@
 
 .content-wrapper{
     display:block;
+    transition: display 2s linear 0s;
+    border: 1px solid rgba(25,90,155,0.5);;
+    margin-left: -5px;
+    margin-top: 1px;
+
+    padding: 5px;
+    background: rgba(190,250,155,0.8);
 }
 
 .pView{
