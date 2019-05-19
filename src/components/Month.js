@@ -104,7 +104,8 @@ export default class Month extends React.Component {
           </button>
           <button onClick={this.nextMonth} className="button arrow fa fa-caret-right" aria-hidden="true"></button>        
         </div>
-          <div className="monthdays">
+        <progress className="progress is-primary" value="15" max="100">15%</progress>
+        <div className="monthdays">
           <Week year={this.state.yearDisplay} month={this.state.monthDisplay} today={this.props.today} numWeek={1}/>
           <Week year={this.state.yearDisplay} month={this.state.monthDisplay} today={this.props.today} numWeek={2}/>
           <Week year={this.state.yearDisplay} month={this.state.monthDisplay} today={this.props.today} numWeek={3}/>

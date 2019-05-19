@@ -74,6 +74,7 @@ export default class Week extends React.Component{
   }
 
   render(){
+
     const { open } = this.state;
     const numDays = 32 - new Date(this.state.yearDisplay, this.state.monthDisplay, 32).getDate()
 
@@ -81,7 +82,9 @@ export default class Week extends React.Component{
                                               this.state.monthDisplay, 
                                               this.state.today.dd, "short")
 
-    const Content = posed.div({closed: { display: 'none' },open: { display: 'block' }});
+    const WeekPlanner = posed.div({ closed: { display: 'none' },
+                                    open: { display: 'block', height:'100%' }
+                                  });
 
     if(this.state.leap===false && numDays === 28 && this.props.numWeek===5){
       return (<div></div>)     
@@ -107,11 +110,11 @@ export default class Week extends React.Component{
               <p>{this.props.numWeek}</p>
             </button>              
             </div>
-            <Content className="content" pose={open ? 'open' : 'closed'}>
+            <WeekPlanner className="planner" pose={open ? 'open' : 'closed'}>
               <div className="content-wrapper">
                 <Planner days={weekDays}/>
               </div>
-            </Content>
+            </WeekPlanner>
         </div>
 
           )
