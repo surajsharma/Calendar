@@ -106,10 +106,12 @@ export default class Week extends React.Component{
                           key={index}
                           sunday={item  === 'Sun' ? true : false }/>))}
               </div>
-            <button className='week-btn' onClick={this.openWeekView}>
+
+	    <button className='week-btn' onClick={this.openWeekView}>
               <p>{this.props.numWeek}</p>
             </button>              
             </div>
+
             <WeekPlanner className="planner" pose={open ? 'open' : 'closed'}>
               <div className="content-wrapper">
                 <Planner days={weekDays}/>
