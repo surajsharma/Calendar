@@ -1,3 +1,8 @@
+.grid{
+  width: 100vw;
+  height: 100vh;
+}
+
 .day-name{
   float:right;
   margin-top: -5px;
@@ -34,7 +39,7 @@
 }
 
 .week:hover {
-  background: rgba(90,210,90,0.5);
+  background: rgba(90,210,90,0.3);
   border: 0;
   outline: none;
 }
@@ -172,4 +177,13 @@
   height: 40px;
   margin: 0 auto;
   margin-top: -42px;
+}
+
+
+body{
+  background: url('https://puu.sh/Dunn6/a4c43e114a.png');
+  background-repeat: repeat-y repeat-x;
+  height: 100vh;
+  margin-top: -10px;
+  overflow:hidden;
 }

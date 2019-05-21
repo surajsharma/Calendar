@@ -5,10 +5,13 @@
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
+    "hammerjs": "^2.0.8",
+    "muuri": "^0.7.1",
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-pose": "^4.0.8",
-    "react-scripts": "2.1.8"
+    "react-scripts": "2.1.8",
+    "xterm": "^3.13.1"
   },
   "devDependencies": {
     "typescript": "3.3.3"

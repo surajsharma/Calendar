@@ -2,6 +2,7 @@
 //ZOOM
 
 import React from "react";
+import Muuri from "muuri";
 import "./styles.css";
 import Month from "./components/Month"
 
@@ -11,14 +12,23 @@ export default class App extends React.Component {
     this.state = {
       today: new Date(),
       cMonth: new Date().getMonth(),
-      cYear: new Date().getFullYear()
+      cYear: new Date().getFullYear(),
     };
   }
+
+  componentDidMount() {
+    let grid = new Muuri('.grid', {
+      dragEnabled: true
+    })
+  }
+
   render() {
     return (
-      <div>
-       <Month year={this.state.cYear} month={this.state.cMonth} today={this.state.today}/>
+      <div className="grid">
+        <div class="item">
+          <Month year={this.state.cYear} month={this.state.cMonth} today={this.state.today}/>
+        </div>
       </div>
-    );
+      );
   }
 }
