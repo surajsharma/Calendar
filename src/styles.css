@@ -1,11 +1,53 @@
+@import url('https://fonts.googleapis.com/css?family=Text+Me+One|VT323&display=swap');
+
+body{
+  height: 100%;
+  margin-top: -10px;
+}
+
 .grid{
   width: 100vw;
-  height: 100vh;
-  /*background: lightgrey;*/
 }
 
 .header{
   color: white;
+  font-family: 'Text Me One', sans-serif;
+  font-size: 1.5em;
+}
+
+.prev-btn{
+  color: white;
+}
+
+.prev-btn:hover{
+  color: black;
+}
+
+.next-btn{
+  color: white;
+}
+
+.next-btn:hover{
+  color: black;
+}
+
+.progress-area{
+  display: flex;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.progress{
+  width: 85%;
+  height:1px;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+.progress-text{
+  font-family: 'Text Me One', sans-serif;
+  font-size: 0.8em;
+  color: #fef;
 }
 
 .day-name{
@@ -19,14 +61,10 @@
  }
 
 .sunday{
-  background: linear-gradient(180deg, #E90 0%, #E9D 100%);
-  color: black;
+  background: linear-gradient(360deg, #E90 0%, #E9D 100%);
 }
 
 .day {
-  -webkit-box-shadow: 0px 0px 4px -3px rgba(0,0,0,1);
-  -moz-box-shadow: 0px 0px 4px -3px rgba(0,0,0,1);
-  box-shadow: 0px 0px 4px -3px rgba(0,0,0,1);
   outline: none;
   width: 40px;
   height: 40px;
@@ -34,6 +72,11 @@
   padding:2px;
   margin: 1px;
   color: black;
+  border-bottom: 1px solid black;
+}
+
+.t{
+  background: transparent;
 }
 
 .day:hover {
@@ -59,6 +102,21 @@
   border: 0;
   border-radius: 10px;
   outline: none;
+}
+
+.fifthweek{
+  /*padding: 5px;*/
+  /*border: 0.001em solid rgba(140,190,190,0.5);*/
+  width: 90%;
+  justify-content: space-between;
+  display: flex;
+}
+
+.week-days{
+  /*padding: 5px;*/
+  width: 90%;
+  justify-content: space-between;
+  display: flex;
 }
 
 .week-btn{
@@ -91,7 +149,7 @@
 
 .month {
   padding: 5px;
-  width: 360px;
+  width: 100vw;
   /*margin: 10px;*/
   background: linear-gradient(360deg, #efd5ff 0%, #515ada 100%);
 }
@@ -99,9 +157,8 @@
 .monthdays {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-end;
-  width: 99%;
   margin: 0 auto;
+  padding: 15px;
   margin-top: -10px;
 }
 
@@ -123,8 +180,7 @@
 
 .monthTop{
   display: flex;
-  justify-content: space-between;
- 
+  justify-content: space-between; 
 }
 
 .button{
@@ -169,16 +225,4 @@
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-}
-
-.progress{
-  width: 90%;
-  height: 2px;
-  margin: 0 auto;
-}
-
-
-body{
-  height: 100%;
-  margin-top: -10px;
 }

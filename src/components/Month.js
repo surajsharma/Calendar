@@ -114,13 +114,16 @@ export default class Month extends React.Component {
     return (
       <div className="month">
         <div className="monthTop">
-          <button onClick={this.prevMonth} className="button arrow fa fa-caret-left" aria-hidden="true"></button>
+          <button onClick={this.prevMonth} className="prev-btn button arrow fa fa-caret-left" aria-hidden="true"></button>
           <button onClick={this.zoomOut} className="button is-dark is-outlined">
             <p className="header">{selectedMonthName}, {this.state.yearDisplay}</p>
           </button>
-          <button onClick={this.nextMonth} className="button arrow fa fa-caret-right" aria-hidden="true"></button>        
+          <button onClick={this.nextMonth} className="next-btn button arrow fa fa-caret-right" aria-hidden="true"></button>        
         </div>
-        <progress className="progress" value={this.state.prog} max="100">15%</progress>
+        <div className="progress-area"> 
+          <progress className="progress is-dark" value={this.state.prog} max="100">15%</progress>
+          <p className="progress-text">Year : {Math.round(this.state.prog)}% </p>
+        </div>
         <div className="monthdays">
           <Week year={this.state.yearDisplay} month={this.state.monthDisplay} today={this.props.today} numWeek={1}/>
           <Week year={this.state.yearDisplay} month={this.state.monthDisplay} today={this.props.today} numWeek={2}/>

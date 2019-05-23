@@ -92,7 +92,7 @@ export default class Week extends React.Component{
       return (
         <div className="pView">
           <div className="week">
-            <div className='week-days'>
+            <div className={this.props.numWeek === 5 ? 'fifthweek' : 'week-days'}>
               {weekDays.map((item, index) => (
                 <Day  today={this.state.today}
                           isWeek={true}

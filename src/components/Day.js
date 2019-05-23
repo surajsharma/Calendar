@@ -24,7 +24,7 @@ export default class Day extends React.Component {
       else
         return <button  onDoubleClick={this.handleDoubleClick} 
                         className={ this.state.toggled ? 
-                                    this.props.dayName === 'Sun'? "toggled sunday day" : "day toggled" :  this.props.dayName === 'Sun'? "sunday day" : "day"}
+                                    this.props.dayName === 'Sun'? "toggled day sunday" : "toggled day t" :  this.props.dayName === 'Sun'? "day sunday" : "day t"}
                 >
 		  <div className="day-date">{this.props.date}</div><br /> 
 		  <div className="day-name">{this.props.dayName}</div>
