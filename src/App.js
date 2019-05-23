@@ -2,7 +2,7 @@
 //ZOOM
 
 import React from "react";
-import Muuri from "muuri";
+// import Muuri from "muuri";
 import "./styles.css";
 import Month from "./components/Month"
 
@@ -17,9 +17,9 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    let grid = new Muuri('.grid', {
-      dragEnabled: true
-    })
+    // let grid = new Muuri('.grid', {
+    //   dragEnabled: true
+    // })
 
   }
 

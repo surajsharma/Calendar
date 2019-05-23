@@ -115,7 +115,7 @@ export default class Month extends React.Component {
       <div className="month">
         <div className="monthTop">
           <button onClick={this.prevMonth} className="prev-btn button arrow fa fa-caret-left" aria-hidden="true"></button>
-          <button onClick={this.zoomOut} className="button is-dark is-outlined">
+          <button onClick={this.zoomOut} className="button">
             <p className="header">{selectedMonthName}, {this.state.yearDisplay}</p>
           </button>
           <button onClick={this.nextMonth} className="next-btn button arrow fa fa-caret-right" aria-hidden="true"></button>        
