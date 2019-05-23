@@ -20,13 +20,20 @@ export default class App extends React.Component {
     let grid = new Muuri('.grid', {
       dragEnabled: true
     })
+
   }
 
   render() {
     return (
-      <div className="grid">
-        <div class="item">
-          <Month year={this.state.cYear} month={this.state.cMonth} today={this.state.today}/>
+      <div className="grid columns">
+        <div className="column">
+          <div className="item">
+            <Month year={this.state.cYear} month={this.state.cMonth} today={this.state.today}/>
+          </div>
+        </div>
+        <div className="column">
+          <div className="item">
+          </div>
         </div>
       </div>
       );

@@ -11,7 +11,7 @@ export default class Week extends React.Component{
       monthDisplay:this.props.month,
       yearDisplay:this.props.year,
       leap: this.props.month === 2 && this.props.year%4 === 0,
-      open:false
+      plannerOpen:false
     }
   }
 
@@ -67,15 +67,15 @@ export default class Week extends React.Component{
 
   openWeekView = () =>{
     this.setState({
-      open: !this.state.open
+      plannerOpen: !this.state.plannerOpen
     })
 
-    console.log(this.state.open)
+    console.log(this.state.plannerOpen)
   }
 
   render(){
 
-    const { open } = this.state;
+    const { plannerOpen } = this.state;
     const numDays = 32 - new Date(this.state.yearDisplay, this.state.monthDisplay, 32).getDate()
 
 	  let weekDays = this.getWeekDays('en-US',  this.state.yearDisplay, 
@@ -112,7 +112,7 @@ export default class Week extends React.Component{
             </button>              
             </div>
 
-            <WeekPlanner className="planner" pose={open ? 'open' : 'closed'}>
+            <WeekPlanner className="planner" pose={plannerOpen ? 'open' : 'closed'}>
               <div className="content-wrapper">
                 <Planner days={weekDays}/>
               </div>
@@ -123,3 +123,4 @@ export default class Week extends React.Component{
     }
   }
 }
+  

@@ -14,7 +14,7 @@ export default class WeekPlanner extends React.Component{
   componentDidMount() {
     let week = []
     
-    console.log(this.props.days)
+    // console.log(this.props.days)
 
     for(let i=0; i< this.props.days.length; i++){
       for(let j=0; j<24; j++){

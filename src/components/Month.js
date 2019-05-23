@@ -15,6 +15,8 @@ export default class Month extends React.Component {
       	      name:null},
       monthDisplay:this.props.month,
       yearDisplay:this.props.year,
+      prog: 0,
+      leap: this.props.month === 2 && this.props.year%4 === 0
     }
 
     this.months = [ "January", 
@@ -36,13 +38,27 @@ export default class Month extends React.Component {
 		  .toLocaleDateString(locale, { weekday: longShort })
   }
 
+  getYearProgress = () =>{
+    // (36* - days elapsed)/365*100 
+    // (36*−182.5)/365×100
+
+    let elapsed = 0 
+    let prog = 0
+    for (let i = 0; i < this.props.month; i++){
+      elapsed += 32 - new Date(this.props.year, i, 32).getDate()
+    }
+    prog = this.state.leap ? 100-(366-elapsed)/366*100 : 100-(365-elapsed)/365*100
+    return (prog)
+
+  }
+
    componentDidMount() {
     let dd = this.props.today.getDate()
     let mm = this.props.today.getMonth()
     let yyyy = this.props.today.getFullYear()
     let name = this.getDayName(dd,mm,yyyy,"en-US", "short")
     this.daysInMonth(this.state.monthDisplay, this.state.monthDisplay);
-    this.setState({ today: {dd:dd, mm:mm, yyyy: yyyy, name: name} });
+    this.setState({ today: {dd:dd, mm:mm, yyyy: yyyy, name: name}, prog: this.getYearProgress()});
   }
 
   daysInMonth = (iMonth, iYear) => {
@@ -100,11 +116,11 @@ export default class Month extends React.Component {
         <div className="monthTop">
           <button onClick={this.prevMonth} className="button arrow fa fa-caret-left" aria-hidden="true"></button>
           <button onClick={this.zoomOut} className="button is-dark is-outlined">
-            {selectedMonthName}, {this.state.yearDisplay}
+            <p className="header">{selectedMonthName}, {this.state.yearDisplay}</p>
           </button>
           <button onClick={this.nextMonth} className="button arrow fa fa-caret-right" aria-hidden="true"></button>        
         </div>
-        <progress className="progress is-primary" value="15" max="100">15%</progress>
+        <progress className="progress" value={this.state.prog} max="100">15%</progress>
         <div className="monthdays">
           <Week year={this.state.yearDisplay} month={this.state.monthDisplay} today={this.props.today} numWeek={1}/>
           <Week year={this.state.yearDisplay} month={this.state.monthDisplay} today={this.props.today} numWeek={2}/>

@@ -1,6 +1,11 @@
 .grid{
   width: 100vw;
   height: 100vh;
+  /*background: lightgrey;*/
+}
+
+.header{
+  color: white;
 }
 
 .day-name{
@@ -14,59 +19,70 @@
  }
 
 .sunday{
-  background: rgba(190,255,155,0.9);
+  background: linear-gradient(180deg, #E90 0%, #E9D 100%);
   color: black;
 }
 
 .day {
+  -webkit-box-shadow: 0px 0px 4px -3px rgba(0,0,0,1);
+  -moz-box-shadow: 0px 0px 4px -3px rgba(0,0,0,1);
+  box-shadow: 0px 0px 4px -3px rgba(0,0,0,1);
   outline: none;
   width: 40px;
   height: 40px;
-  border: 1px solid black;
   font-size: 0.6em;
   padding:2px;
   margin: 1px;
+  color: black;
+}
+
+.day:hover {
+  background: rgba(0,200,55,0.3);;
+  -webkit-box-shadow: inset 0px 0px 4px -2px rgba(0,0,0,1);
+  -moz-box-shadow: inset 0px 0px 4px -2px rgba(0,0,0,1);
+  box-shadow: inset 0px 0px 4px -2px rgba(0,0,0,1);
+  color:black;
+  /*border: 1px solid white;*/
 }
 
 .week {
   outline: none;
   display: flex;
-  float: right;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin: 2px;
-  width: 100%;
+  padding: 5px;
+  /*border: 1px solid;*/
 }
 
 .week:hover {
-  background: rgba(90,210,90,0.3);
+  background: rgba(0,0,0,0.2);
   border: 0;
+  border-radius: 10px;
   outline: none;
 }
 
 .week-btn{
-  background: transparent;
+  -webkit-box-shadow: 0px 0px 4px -3px rgba(0,0,0,1);
+  -moz-box-shadow: 0px 0px 4px -3px rgba(0,0,0,1);
+  box-shadow: 0px 0px 4px -3px rgba(0,0,0,1);
+
   width: 20px;
+  background: linear-gradient(180deg, #efd5ff 0%, #515ada 100%);
+
+  border-radius: 10px;
   padding:2px;
   margin: 3px;
   outline: none;
+  border:0;
 }
 
 .week-btn:hover{
-  background: lime;
-  color: black;
-}
-
-.week-btn p{
-}
-
-.week-days{
-  background:  rgba(200,250,155,0.5);
+  background: black;
+  color: white;
 }
 
 .week-hours{
   display: flex;
-  background:  rgba(200,250,155,0.5);
   flex-direction: column;
   flex-wrap: wrap;
   height: 420px;
@@ -75,26 +91,20 @@
 
 .month {
   padding: 5px;
-  width: 361px;
-  margin: 10px;
-  background: rgba(190,250,155,0.2);  
+  width: 360px;
+  /*margin: 10px;*/
+  background: linear-gradient(360deg, #efd5ff 0%, #515ada 100%);
 }
 
 .monthdays {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
-  width: 92.5%;
+  width: 99%;
   margin: 0 auto;
-
   margin-top: -10px;
 }
 
-.day:hover {
-  background: rgba(255,200,55,0.9);;
-  color:black;
-  border: 1px solid white;
-}
 
 .App {
   font-family: sans-serif;
@@ -123,15 +133,6 @@
   border: 0;
 }
 
-.arrow{
-  /*background: rgba(190,250,155,0.5)*/
-}
-
-.arrow:hover{
-  /*background: rgba(190,250,155,0.8)*/
-  color: white;
-}
-
 .toggled{
   background: lightgreen;
 }
@@ -156,7 +157,6 @@
   font-size: 0.6em;
   padding:2px;
   margin: 1px;
- 
   background: transparent;
 }
 
@@ -169,21 +169,16 @@
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  background:  rgba(200,250,155,0.5);
-
 }
+
 .progress{
-  width: 100%;
-  height: 40px;
+  width: 90%;
+  height: 2px;
   margin: 0 auto;
-  margin-top: -42px;
 }
 
 
 body{
-  background: url('https://puu.sh/Dunn6/a4c43e114a.png');
-  background-repeat: repeat-y repeat-x;
-  height: 100vh;
+  height: 100%;
   margin-top: -10px;
-  overflow:hidden;
 }
