@@ -2,7 +2,6 @@
 //ZOOM
 
 import React from "react";
-// import Muuri from "muuri";
 import "./styles.css";
 import Month from "./components/Month"
 

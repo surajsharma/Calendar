@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Text+Me+One|VT323&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Text+Me+One&display=swap');
 
 body{
   height: 100%;
@@ -54,20 +54,33 @@ body{
   color: #fef;
 }
 
+
+.weatherlocal{
+  font-family: 'Text Me One', sans-serif;
+  font-size: 0.8em;
+  color: #fef;
+  
+
+}
+
 .day-name{
+  font-family: 'Text Me One', sans-serif;
+  font-size: 1em;
+  font-weight: 500;
   float:right;
-  margin-top: -5px;
-  color: white;
+  margin-top: -15px;
 }
 
 .day-date{
+  font-family: 'Text Me One', sans-serif;
   width:50%;
-  font-size: 16px;
+  font-size: 2.3em;
   font-weight:250;
  }
 
 .sunday{
   background-image: radial-gradient( circle 961px at 3% 6.3%,  rgba(251,135,43,1) 0%, rgba(217,224,33,1) 100.2% );
+  color: #ff2500 !important;
 }
 
 .day {

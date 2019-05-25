@@ -1,5 +1,6 @@
 import React from "react"
 import Week from "./Week"
+import Weather from "./WeatherLocal"
 
 export default class Month extends React.Component {
   constructor(props) {
@@ -123,6 +124,9 @@ export default class Month extends React.Component {
         <div className="progress-area"> 
           <progress className="progress is-dark" value={this.state.prog} max="100">15%</progress>
           <p className="progress-text">Year : {Math.round(this.state.prog)}% </p>
+        </div>
+        <div className="weatherlocal">
+          <Weather />
         </div>
         <div className="monthdays">
           <Week year={this.state.yearDisplay} month={this.state.monthDisplay} today={this.props.today} numWeek={1}/>

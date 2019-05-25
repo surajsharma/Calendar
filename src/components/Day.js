@@ -1,4 +1,5 @@
 import React from "react"
+// import Muuri from "muuri";
 
 export default class Day extends React.Component {
   constructor(props){
