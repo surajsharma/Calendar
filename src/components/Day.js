@@ -27,7 +27,8 @@ export default class Day extends React.Component {
                         className={ this.state.toggled ? 
                                     this.props.dayName === 'Sun'? "toggled day sunday" : "toggled day t" :  this.props.dayName === 'Sun'? "day sunday" : "day t"}
                 >
-		  <div className="day-date">{this.props.date}</div><br /> 
+		  <div className="day-date">{this.props.date}</div>
+        <br /> 
 		  <div className="day-name">{this.props.dayName}</div>
 	      </button>
   }

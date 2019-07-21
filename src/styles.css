@@ -1,10 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Text+Me+One&display=swap');
 
-body{
-  height: 100%;
-  margin-top: -10px;
-}
-
 .grid{
   width: 100vw;
 }
@@ -42,8 +37,8 @@ body{
 }
 
 .progress{
-  width: 85%;
-  height:1px;
+  width: 80%;
+  height: 1px;
   margin: 0 auto;
   margin-top: 10px;
 }
@@ -51,21 +46,18 @@ body{
 .progress-text{
   font-family: 'Text Me One', sans-serif;
   font-size: 0.8em;
-  color: #fef;
+  color: #fff;
 }
-
 
 .weatherlocal{
   font-family: 'Text Me One', sans-serif;
   font-size: 0.8em;
   color: #fef;
-  
-
 }
 
 .day-name{
   font-family: 'Text Me One', sans-serif;
-  font-size: 1em;
+  font-size: 2em;
   font-weight: 500;
   float:right;
   margin-top: -15px;
@@ -74,25 +66,40 @@ body{
 .day-date{
   font-family: 'Text Me One', sans-serif;
   width:50%;
-  font-size: 2.3em;
+  font-size: 3.3em;
   font-weight:250;
  }
 
 .sunday{
-  background-image: radial-gradient( circle 961px at 3% 6.3%,  rgba(251,135,43,1) 0%, rgba(217,224,33,1) 100.2% );
-  color: #ff2500 !important;
+  /* background-image: radial-gradient( circle 961px at 3% 6.3%,  rgba(251,135,43,1) 0%, rgba(217,224,33,1) 100.2% ); */
+  /* color: #ff2500 !important; */
+ 
+  background: transparent;
+  outline: none;
+ 
+  width: 100px;
+ 
+  height: 100px;
+  font-size: 0.6em;
+ 
+  padding:5px;
+  margin: 1px;
+  color:white;
+  border: 0;
+  border-bottom: 00.01em solid red !important;
+
 }
 
 .day {
   outline: none;
-  width: 40px;
-  height: 40px;
+  width: 100px;
+  height: 100px;
   font-size: 0.6em;
-  padding:2px;
+  padding:5px;
   margin: 1px;
-  color: black;
-  border:0;
-  border-bottom: 2px solid black;
+  color:white;
+  border: 0;
+  border-bottom: 00.01em solid grey;
 }
 
 .t{
@@ -104,7 +111,7 @@ body{
   -webkit-box-shadow: inset 0px 0px 4px -2px rgba(0,0,0,1);
   -moz-box-shadow: inset 0px 0px 4px -2px rgba(0,0,0,1);
   box-shadow: inset 0px 0px 4px -2px rgba(0,0,0,1);
-  color:black;
+  color:lightgreen;
   /*border: 1px solid white;*/
 }
 
@@ -119,7 +126,7 @@ body{
 }
 
 .week:hover {
-  background: rgba(0,0,0,0.2);
+  background: rgba(20,20,20,0.2);
   border: 0;
   border-radius: 10px;
   outline: none;
@@ -129,15 +136,17 @@ body{
   /*padding: 5px;*/
   /*border: 0.001em solid rgba(140,190,190,0.5);*/
   width: 90%;
-  justify-content: space-between;
+  justify-content: center;
+  margin: 5px;
   display: flex;
 }
 
 .week-days{
   /*padding: 5px;*/
   width: 90%;
-  justify-content: space-between;
+  justify-content: center;
   display: flex;
+  margin: 5px;
 }
 
 .week-btn{
@@ -171,8 +180,10 @@ body{
 .month {
   padding: 5px;
   width: 100vw;
+  height: 100vh;
   /*margin: 10px;*/
-  background: linear-gradient(360deg, #efd5ff 0%, #515ada 100%);
+  /*background: linear-gradient(360deg, #f5f5f5 0%, #fff 100%); */
+  background: black
 }
 
 .monthdays {
@@ -190,8 +201,8 @@ body{
 }
 
 .today{
-  background: black;
-  color: white;
+  color: orangered;
+  background: transparent;
 }
 
 .center{

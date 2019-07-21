@@ -122,7 +122,7 @@ export default class Month extends React.Component {
           <button onClick={this.nextMonth} className="next-btn button arrow fa fa-caret-right" aria-hidden="true"></button>        
         </div>
         <div className="progress-area"> 
-          <progress className="progress is-dark" value={this.state.prog} max="100">15%</progress>
+          <progress className="progress is-danger" value={this.state.prog} max="100"/>
           <p className="progress-text">Year : {Math.round(this.state.prog)}% </p>
         </div>
         <div className="weatherlocal">
