@@ -71,13 +71,13 @@
 
 .day {
     width: 11vw;
-    height: 7vh;
+    height: 8vh;
     padding: 5px;
     margin: 1px;
 }
 
 .t {
-    /* background: transparent; */
+    background: transparent;
 }
 
 .day:hover {
@@ -205,4 +205,7 @@
     display: flex;
     flex-wrap: wrap;
     width: 100%;
+}
+button:focus {
+    outline: 0;
 }

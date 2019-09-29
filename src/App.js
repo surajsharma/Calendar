@@ -1,5 +1,4 @@
-//YEARS
-//ZOOM
+//YEARS ZOOM
 
 import React from "react";
 import "./styles.css";
@@ -15,23 +14,15 @@ export default class App extends React.Component {
         };
     }
 
-    componentDidMount() {
-        // let grid = new Muuri('.grid', {
-        //   dragEnabled: true
-        // })
-    }
-
     render() {
         return (
             <div className="grid columns">
                 <div className="column">
-                    <div className="item">
-                        <Month
-                            year={this.state.cYear}
-                            month={this.state.cMonth}
-                            today={this.state.today}
-                        />
-                    </div>
+                    <Month
+                        year={this.state.cYear}
+                        month={this.state.cMonth}
+                        today={this.state.today}
+                    />
                 </div>
                 <div className="column">
                     <div className="item"></div>
