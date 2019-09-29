@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Text+Me+One&display=swap");
 
+.grid {
+    margin: 0 auto;
+}
+
 .header {
     color: salmon;
     font-family: "Text Me One", sans-serif;
@@ -27,7 +31,7 @@
 }
 
 .progress-area {
-    height: 1px;
+    padding: 10px;
 }
 
 .progress {
@@ -49,31 +53,33 @@
 }
 
 .day-name {
-    margin-top: -12px;
-    font-weight: 100;
-    font-size: 2vw;
+    margin-top: -15px;
+    font-size: calc(5px + 1vw);
+    color: lightgray;
 }
 
 .day-date {
     font-family: "helvetica", sans-serif;
-    font-size: 4vw;
+    font-size: calc(10px + 1vw);
 }
 
 .sunday {
-    color: darkslategrey !important;
-    background: lightblue;
+    color: white !important;
+    background: #515def;
     outline: none;
-    padding: 5px;
-    margin: 1px;
-    color: white;
-    border: 1px solid darkslategray;
 }
 
+.sunday .day-name {
+    color: black;
+}
 .day {
-    width: 11vw;
-    height: 8vh;
-    padding: 5px;
     margin: 1px;
+    width: calc(4px + 9vw);
+    height: calc(4px + 9vw);
+    min-width: 37px;
+    min-height: 37px;
+    max-width: 100px;
+    max-height: 100px;
 }
 
 .t {
@@ -81,11 +87,15 @@
 }
 
 .day:hover {
-    background: rgba(6, 39, 2, 0.884);
     -webkit-box-shadow: inset 0px 0px 4px -2px rgba(0, 0, 0, 1);
     -moz-box-shadow: inset 0px 0px 4px -2px rgba(0, 0, 0, 1);
     box-shadow: inset 0px 0px 4px -2px rgba(0, 0, 0, 1);
+    background: rgba(6, 39, 2, 0.884);
     color: lightgreen !important;
+}
+
+.week {
+    margin: 1px;
 }
 
 .week:hover {
@@ -93,15 +103,6 @@
     border: 0;
     border-radius: 10px;
     outline: none;
-}
-
-.fifthweek {
-    padding: 5px;
-    margin-top: 5px;
-}
-
-.week-days {
-    margin: 5px;
 }
 
 .week-btn {
@@ -133,19 +134,13 @@
 }
 
 .month {
-    padding: 5px;
-    width: 100vw;
-    height: 100vh;
     display: flex;
     flex-direction: column;
+    border: 0.5px solid gold;
 }
 
 .monthdays {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
     margin: 0 auto;
-    justify-content: flex-start;
     padding: 15px;
 }
 
@@ -167,6 +162,7 @@
 .monthTop {
     display: flex;
     justify-content: space-between;
+    padding: 15px;
 }
 
 .button {

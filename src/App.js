@@ -16,16 +16,13 @@ export default class App extends React.Component {
 
     render() {
         return (
-            <div className="grid columns">
-                <div className="column">
+            <div className="grid">
+                <div>
                     <Month
                         year={this.state.cYear}
                         month={this.state.cMonth}
                         today={this.state.today}
                     />
-                </div>
-                <div className="column">
-                    <div className="item"></div>
                 </div>
             </div>
         );
