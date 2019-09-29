@@ -1,126 +1,141 @@
-import React from "react"
-import Day from "./Day"
-import posed from 'react-pose'
-import Planner from "./WeekPlanner"
+import React from "react";
+import Day from "./Day";
 
-export default class Week extends React.Component{
-   constructor(props) {
-    super(props);
-    this.state = {
-      today: {dd:null, mm:null, yyyy:null, name:null},
-      monthDisplay:this.props.month,
-      yearDisplay:this.props.year,
-      leap: this.props.month === 2 && this.props.year%4 === 0,
-      plannerOpen:false
-    }
-  }
-
-  componentDidMount() {
-    let dd = this.props.numWeek === 1 ? 1 : (((this.props.numWeek* 7)-6))
-    let mm = this.state.monthDisplay
-    let yyyy = this.state.yearDisplay
-    let name = this.props.today.getDay()
-    this.setState({ today: {dd:dd, mm:mm, yyyy: yyyy, name: name}})
-  }
-
-  componentWillReceiveProps(props){
-    const {month}= this.props
-    if(props.month !== month || props.month===1){
-      this.setState({
-        monthDisplay: props.month,
-        yearDisplay: props.year,
-        leap: props.month===1 && props.year%4===0
-      })      
-    }
-  }
-
-  getWeekDays = (locale, year, month, date, longShort) => {
-    const numDays = 32 - new Date(this.props.year, this.props.month, 32).getDate()
-    const baseDate = new Date(Date.UTC(year,month, date)) // just a Monday
-    let weekDays = []
-    let show = numDays-date > 7 ? 7 : this.props.month === 1 ? numDays-21 : numDays-28
-
-    if(show === 8 && this.props.numWeek === 4){
-      show = 7
+export default class Week extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            today: { dd: null, mm: null, yyyy: null, name: null },
+            monthDisplay: this.props.month,
+            yearDisplay: this.props.year,
+            leap: this.props.month === 2 && this.props.year % 4 === 0,
+            plannerOpen: false
+        };
     }
 
-    if(this.state.leap && this.props.numWeek === 5){
-      show = 1
+    componentDidMount() {
+        let dd = this.props.numWeek === 1 ? 1 : this.props.numWeek * 7 - 6;
+        let mm = this.state.monthDisplay;
+        let yyyy = this.state.yearDisplay;
+        let name = this.props.today.getDay();
+        this.setState({ today: { dd: dd, mm: mm, yyyy: yyyy, name: name } });
     }
 
-    for(let i = date; i < show + date; i++)
-    {       
-      weekDays.push(baseDate.toLocaleDateString(locale, { weekday: longShort }));
-      baseDate.setDate(baseDate.getDate() + 1)
-
-      if (numDays-date < 0 ){
-        weekDays.pop()
-        return weekDays
-      }    
+    componentWillReceiveProps(props) {
+        const { month } = this.props;
+        if (props.month !== month || props.month === 1) {
+            this.setState({
+                monthDisplay: props.month,
+                yearDisplay: props.year,
+                leap: props.month === 1 && props.year % 4 === 0
+            });
+        }
     }
-    return weekDays
-  }
 
-  getBaseDate = (locale, year, month, date) => {
-	  return new Date(year, month, date).getDate()
-  }
+    getWeekDays = (locale, year, month, date, longShort) => {
+        const numDays =
+            32 - new Date(this.props.year, this.props.month, 32).getDate();
+        const baseDate = new Date(Date.UTC(year, month, date)); // just a Monday
+        let weekDays = [];
+        let show =
+            numDays - date > 7
+                ? 7
+                : this.props.month === 1
+                ? numDays - 21
+                : numDays - 28;
 
-  openWeekView = () =>{
-    this.setState({
-      plannerOpen: !this.state.plannerOpen
-    })
+        if (show === 8 && this.props.numWeek === 4) {
+            show = 7;
+        }
 
-    console.log(this.state.plannerOpen)
-  }
+        if (this.state.leap && this.props.numWeek === 5) {
+            show = 1;
+        }
 
-  render(){
+        for (let i = date; i < show + date; i++) {
+            weekDays.push(
+                baseDate.toLocaleDateString(locale, { weekday: longShort })
+            );
+            baseDate.setDate(baseDate.getDate() + 1);
 
-    const { plannerOpen } = this.state;
-    const numDays = 32 - new Date(this.state.yearDisplay, this.state.monthDisplay, 32).getDate()
+            if (numDays - date < 0) {
+                weekDays.pop();
+                return weekDays;
+            }
+        }
+        return weekDays;
+    };
 
-	  let weekDays = this.getWeekDays('en-US',  this.state.yearDisplay, 
-                                              this.state.monthDisplay, 
-                                              this.state.today.dd, "short")
+    getBaseDate = (locale, year, month, date) => {
+        return new Date(year, month, date).getDate();
+    };
 
-    const WeekPlanner = posed.div({ closed: { display: 'none' },
-                                    open: { display: 'block', height:'100%' }
-                                  });
+    openWeekView = () => {
+        this.setState({
+            plannerOpen: !this.state.plannerOpen
+        });
 
-    if(this.state.leap===false && numDays === 28 && this.props.numWeek===5){
-      return (<div></div>)     
-    } else {
-      return (
-        <div className="pView">
-          <div className="week">
-            <div className={this.props.numWeek === 5 ? 'fifthweek' : 'week-days'}>
-              {weekDays.map((item, index) => (
-                <Day  today={this.state.today}
-                          isWeek={true}
-                          dayName={item}
-                          isToday={ this.state.today.dd + index === this.props.today.getDate()
-                          && this.state.monthDisplay === this.props.today.getMonth()
-                          && this.state.yearDisplay === this.props.today.getFullYear() }
-                          month={this.state.monthDisplay}
-                          year={this.state.yearDisplay}
-                          date={this.state.today.dd + index}  
-                          key={index}
-                          sunday={item  === 'Sun' ? true : false }/>))}
-              </div>
+        console.log(this.state.plannerOpen);
+    };
 
-	    <button className='week-btn' onClick={this.openWeekView}>
-              <p>{this.props.numWeek}</p>
-            </button>              
-            </div>
+    render() {
+        const numDays =
+            32 -
+            new Date(
+                this.state.yearDisplay,
+                this.state.monthDisplay,
+                32
+            ).getDate();
 
-            <WeekPlanner className="planner" pose={plannerOpen ? 'open' : 'closed'}>
-              <div className="content-wrapper">
-                <Planner days={weekDays}/>
-              </div>
-            </WeekPlanner>
-        </div>
+        let weekDays = this.getWeekDays(
+            "en-US",
+            this.state.yearDisplay,
+            this.state.monthDisplay,
+            this.state.today.dd,
+            "short"
+        );
 
-          )
+        if (
+            this.state.leap === false &&
+            numDays === 28 &&
+            this.props.numWeek === 5
+        ) {
+            return <div></div>;
+        } else {
+            return (
+                <div className="pView">
+                    <div className="week">
+                        <div
+                            className={
+                                this.props.numWeek === 5
+                                    ? "fifthweek"
+                                    : "week-days"
+                            }
+                        >
+                            {weekDays.map((item, index) => (
+                                <Day
+                                    today={this.state.today}
+                                    isWeek={true}
+                                    dayName={item}
+                                    isToday={
+                                        this.state.today.dd + index ===
+                                            this.props.today.getDate() &&
+                                        this.state.monthDisplay ===
+                                            this.props.today.getMonth() &&
+                                        this.state.yearDisplay ===
+                                            this.props.today.getFullYear()
+                                    }
+                                    month={this.state.monthDisplay}
+                                    year={this.state.yearDisplay}
+                                    date={this.state.today.dd + index}
+                                    key={index}
+                                    sunday={item === "Sun" ? true : false}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            );
+        }
     }
-  }
 }
-  
