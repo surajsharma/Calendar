@@ -31,19 +31,23 @@
 }
 
 .progress-area {
-    padding: 10px;
+    display: grid;
 }
 
 .progress {
     height: 1px;
     margin: 0 auto !important;
+    width: 50vw;
 }
 
 .progress-text {
-    font-family: "Text Me One", sans-serif;
-    font-size: 0.8em;
+    font-size: 0.9em;
     color: black;
-    float: right;
+    margin: 0 auto;
+    background: black;
+    padding: 5px;
+    margin-top: -12px;
+    color: white;
 }
 
 .weatherlocal {
@@ -76,10 +80,10 @@
     margin: 1px;
     width: calc(4px + 9vw);
     height: calc(4px + 9vw);
-    min-width: 37px;
-    min-height: 37px;
-    max-width: 100px;
-    max-height: 100px;
+    min-width: 33px;
+    min-height: 33px;
+    max-width: 77px;
+    max-height: 77px;
 }
 
 .t {
@@ -161,8 +165,9 @@
 
 .monthTop {
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     padding: 15px;
+    margin: 0 auto;
 }
 
 .button {

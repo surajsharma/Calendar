@@ -14,6 +14,21 @@ export default class App extends React.Component {
         };
     }
 
+    ComponentDidMount = () => {
+        this.callBackendAPI()
+            .then((res) => this.setState({ data: res.express }))
+            .catch((err) => console.log(err));
+    };
+
+    callBackendAPI = async () => {
+        const response = await fetch("/express_backend");
+        const body = await response.json();
+
+        if (response.status !== 200) {
+            throw Error(body.message);
+        }
+        return body;
+    };
     render() {
         return (
             <div className="grid">
@@ -28,11 +43,3 @@ export default class App extends React.Component {
         );
     }
 }
-
-// Month
-// week
-// Days
-// week
-// week
-// week
-// week
