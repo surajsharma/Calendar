@@ -1,4 +1,9 @@
-//YEARS ZOOM
+// YEARS ZOOM
+// click opens notepad
+// ---------------+-+-+| alerts, notifications, email, sms
+//            dt:      | alt row cols
+// --------------------| md parser?
+//  +
 
 import React from "react";
 import "./styles.css";
@@ -29,6 +34,7 @@ export default class App extends React.Component {
         }
         return body;
     };
+
     render() {
         return (
             <div className="grid">

@@ -1,3 +1,9 @@
+/* TODO: 
+1. Fix arrows
+2. Final Styling
+3. Themes
+*/
+
 @import url("https://fonts.googleapis.com/css?family=Text+Me+One&display=swap");
 
 .grid {
@@ -40,6 +46,15 @@
     width: 50vw;
 }
 
+.tagmod {
+    background: rgb(255, 255, 255, 1) !important;
+    color: black !important;
+    /* border-top: 1px solid red; */
+    font-size: 0.7em !important;
+    border-bottom: 1px solid red;
+    border-radius: 64px !important;
+}
+
 .progress-text {
     font-size: 0.9em;
     color: black;
@@ -59,7 +74,7 @@
 .day-name {
     margin-top: -15px;
     font-size: calc(5px + 1vw);
-    color: lightgray;
+    color: slategray;
 }
 
 .day-date {
@@ -69,17 +84,20 @@
 
 .sunday {
     color: white !important;
-    background: #515def;
+    background: lightsalmon;
     outline: none;
+    border: 0;
+    border-radius: 50px;
 }
 
 .sunday .day-name {
     color: black;
 }
+
 .day {
     margin: 1px;
-    width: calc(4px + 9vw);
-    height: calc(4px + 9vw);
+    width: calc(5px + 10vw);
+    height: calc(5px + 10vw);
     min-width: 33px;
     min-height: 33px;
     max-width: 77px;
@@ -88,14 +106,16 @@
 
 .t {
     background: transparent;
+    border: 0;
 }
 
 .day:hover {
     -webkit-box-shadow: inset 0px 0px 4px -2px rgba(0, 0, 0, 1);
     -moz-box-shadow: inset 0px 0px 4px -2px rgba(0, 0, 0, 1);
     box-shadow: inset 0px 0px 4px -2px rgba(0, 0, 0, 1);
-    background: rgba(6, 39, 2, 0.884);
-    color: lightgreen !important;
+    background: lightblue;
+    color: slategray !important;
+    border-radius: 50px;
 }
 
 .week {
@@ -113,10 +133,8 @@
     -webkit-box-shadow: 0px 0px 4px -3px rgba(0, 0, 0, 1);
     -moz-box-shadow: 0px 0px 4px -3px rgba(0, 0, 0, 1);
     box-shadow: 0px 0px 4px -3px rgba(0, 0, 0, 1);
-
     width: 20px;
     background: linear-gradient(180deg, #efd5ff 0%, #515ada 100%);
-
     border-radius: 10px;
     padding: 2px;
     margin: 3px;
@@ -156,6 +174,7 @@
 .today {
     color: orangered;
     background: transparent;
+    border: 0;
 }
 
 .center {
@@ -207,6 +226,7 @@
     flex-wrap: wrap;
     width: 100%;
 }
+
 button:focus {
     outline: 0;
 }

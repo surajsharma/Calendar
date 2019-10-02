@@ -148,8 +148,8 @@ export default class Month extends React.Component {
                         value={this.state.prog}
                         max="100"
                     />
-                    <p className="progress-text tag is-link">
-                        {Math.round(this.state.prog)}%{" "}
+                    <p className="progress-text tag tagmod is-inverted is-outlined is-link">
+                        {Math.round(this.state.prog)}%{""}
                     </p>
                 </div>
                 <div className="weatherlocal">
